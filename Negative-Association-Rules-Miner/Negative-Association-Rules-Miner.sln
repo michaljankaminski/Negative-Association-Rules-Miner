@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegativeAssociationRulesMiner", "Negative-Association-Rules-Miner\NegativeAssociationRulesMiner.csproj", "{0EB1E42F-B99E-4206-BF69-E1172ACC079E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolePresentation", "ConsolePresentation\ConsolePresentation.csproj", "{5006BC69-66F4-4467-AC15-A133AB39F9EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32C4D05A-9477-4181-A19E-67521A02EB72}"
+	ProjectSection(SolutionItems) = preProject
+		DataSources\example.csv = DataSources\example.csv
+		DataSources\supermarket.csv = DataSources\supermarket.csv
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegativeAssociationRulesMinerTests", "Negative-Association-Rules-MinerTests1\NegativeAssociationRulesMinerTests.csproj", "{1C6F8955-A014-42CF-A28C-94EABE75598A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EB1E42F-B99E-4206-BF69-E1172ACC079E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB1E42F-B99E-4206-BF69-E1172ACC079E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB1E42F-B99E-4206-BF69-E1172ACC079E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB1E42F-B99E-4206-BF69-E1172ACC079E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5006BC69-66F4-4467-AC15-A133AB39F9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5006BC69-66F4-4467-AC15-A133AB39F9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5006BC69-66F4-4467-AC15-A133AB39F9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5006BC69-66F4-4467-AC15-A133AB39F9EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C6F8955-A014-42CF-A28C-94EABE75598A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C6F8955-A014-42CF-A28C-94EABE75598A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C6F8955-A014-42CF-A28C-94EABE75598A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C6F8955-A014-42CF-A28C-94EABE75598A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36C8FB80-13B2-4E63-A457-9B3F647EEF58}
+	EndGlobalSection
+EndGlobal
