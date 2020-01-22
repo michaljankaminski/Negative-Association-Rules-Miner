@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Negative_Association_Rules_Miner;
 using Negative_Association_Rules_Miner.model;
+using System;
+using System.Linq;
 
 namespace Negative_Association_Rules_MinerTests1
 {
     [TestClass()]
-    public class CsvHandlerTest
+    public class CsvParserTest
     {
         private readonly CsvParser _csvHandler;
-        public CsvHandlerTest()
+        public CsvParserTest()
         {
             _csvHandler = new CsvParser();
         }

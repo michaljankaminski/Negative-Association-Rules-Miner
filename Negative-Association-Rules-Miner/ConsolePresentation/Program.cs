@@ -9,7 +9,7 @@ namespace ConsolePresentation
     {
         private static void Main()
         {
-            CsvHandler handler = new CsvHandler();
+            CsvParser handler = new CsvParser();
             handler.Test();
             Console.WriteLine("Finished");
             Console.ReadKey();

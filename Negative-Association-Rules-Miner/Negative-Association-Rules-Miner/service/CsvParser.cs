@@ -1,10 +1,9 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using CsvHelper;
-using Negative_Association_Rules_Miner.model;
 
 namespace Negative_Association_Rules_Miner
 {
