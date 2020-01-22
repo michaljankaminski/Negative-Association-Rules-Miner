@@ -1,6 +1,6 @@
 ﻿namespace Negative_Association_Rules_Miner.model
 {
-    public interface ICsvModel
+    public interface IDataSourceModel
     {
     }
 }

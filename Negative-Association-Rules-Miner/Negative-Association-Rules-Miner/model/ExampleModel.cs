@@ -2,7 +2,7 @@
 
 namespace Negative_Association_Rules_Miner.model
 {
-    public class ExampleModel : ICsvModel
+    public class ExampleModel : IDataSourceModel
     {
         [Name("id")]
         public int Id { get; set; }
