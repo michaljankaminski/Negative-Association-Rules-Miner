@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using Negative_Association_Rules_Miner;
 
 namespace ConsolePresentation
@@ -7,9 +9,9 @@ namespace ConsolePresentation
     {
         private static void Main()
         {
-            CsvHandler handler = new CsvHandler();
+            CsvParser handler = new CsvParser();
             handler.Test();
-            Console.WriteLine("");
+            Console.WriteLine("Finished");
             Console.ReadKey();
         }
     }

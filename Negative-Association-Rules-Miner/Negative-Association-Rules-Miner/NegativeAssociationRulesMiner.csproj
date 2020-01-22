@@ -55,7 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CsvHandler.cs" />
+    <Compile Include="datasource\CsvFileSource.cs" />
+    <Compile Include="repository\DataSourceRepository.cs" />
+    <Compile Include="service\CsvConverter.cs" />
+    <Compile Include="service\CsvParser.cs" />
     <Compile Include="model\ExampleModel.cs" />
     <Compile Include="model\ICsvModel.cs" />
     <Compile Include="model\SuperMarket.cs" />
@@ -64,5 +67,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,36 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Negative_Association_Rules_Miner;
 using Negative_Association_Rules_Miner.model;
+using System;
+using System.Linq;
 
 namespace Negative_Association_Rules_MinerTests1
 {
     [TestClass()]
-    public class CsvHandlerTest
+    public class CsvParserTest
     {
-        private readonly CsvHandler _csvHandler;
-        public CsvHandlerTest()
+        private readonly CsvParser _csvHandler;
+        public CsvParserTest()
         {
-            _csvHandler = new CsvHandler();
+            _csvHandler = new CsvParser();
         }
 
         [TestMethod()]
         public void ReadCsvFileWithModelTest()
         {
             var path = @"C:\workspace\Negative-Association-Rules-Miner\Negative-Association-Rules-Miner\DataSources\example.csv";
-            var records = _csvHandler.ReadCsvFile<ExampleModel>(path);
-            var items = records.ToList();
-            Assert.IsNotNull(items);
-            Assert.IsTrue(items.Count() > 0);
+            var records = _csvHandler.Parse<ExampleModel>(path).ToList();
+            Assert.IsNotNull(records);
+            Assert.IsTrue(records.Any());
         }
 
         [TestMethod()]
         public void ReadCsvFileWithoutModelTest()
         {
             var path = @"C:\workspace\Negative-Association-Rules-Miner\Negative-Association-Rules-Miner\DataSources\example.csv";
-            var records = _csvHandler.ReadCsvFileDynamic(path).ToList();
+            var records = _csvHandler.ParseDynamic(path).ToList();
             foreach (var record in records)
             {
                Console.WriteLine("hehe");
