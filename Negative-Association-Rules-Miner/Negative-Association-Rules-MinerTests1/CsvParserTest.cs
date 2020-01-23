@@ -19,7 +19,7 @@ namespace Negative_Association_Rules_MinerTests1
         public void ReadCsvFileWithModelTest()
         {
             var path = @"C:\workspace\Negative-Association-Rules-Miner\Negative-Association-Rules-Miner\DataSources\example.csv";
-            var records = _csvHandler.Parse<ExampleModel>(path).ToList();
+            var records = _csvHandler.ParseDynamic(path).ToList();
             Assert.IsNotNull(records);
             Assert.IsTrue(records.Any());
         }

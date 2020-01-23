@@ -15,11 +15,13 @@ namespace ConsolePresentation
             //handler.Test();
             MinerManager manager = new MinerManager();
             List<string> items = new List<string>();
-            items = manager.ViewAvaliableSources().ToList();
+            items = manager.ViewAvailableSources().ToList();
             foreach (var item in items)
             {
                 Console.WriteLine(item);
             }
+
+            manager.SelectSource(1);
             Console.WriteLine("Finished");
             Console.ReadKey();
         }

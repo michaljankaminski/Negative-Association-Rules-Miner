@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using Negative_Association_Rules_Miner.model;
+using Negative_Association_Rules_Miner.model.mining;
 using Negative_Association_Rules_Miner.service;
 
 namespace Negative_Association_Rules_Miner.datasource
@@ -8,8 +10,8 @@ namespace Negative_Association_Rules_Miner.datasource
     interface IDataSource
     {
         IList<string> GetAvailableSources();
-        IList<DynamicRecord> GetPredefinedSet(int key);
-        IList<DynamicRecord> GetCustom(string url);
+        RecordsDataSet GetPredefinedSet(int key);
+        RecordsDataSet GetCustom(string url);
     }
     class CsvDataSource : IDataSource
     {
@@ -42,7 +44,7 @@ namespace Negative_Association_Rules_Miner.datasource
             return files;
         }
 
-        public IList<DynamicRecord> GetPredefinedSet(int key)
+        public RecordsDataSet GetPredefinedSet(int key)
         {
             foreach (var file in _fileStorage.GetFiles())
             {
@@ -55,7 +57,7 @@ namespace Negative_Association_Rules_Miner.datasource
             return null;
         }
 
-        public IList<DynamicRecord> GetCustom(string url)
+        public RecordsDataSet GetCustom(string url)
         {
             throw new System.NotImplementedException();
         }

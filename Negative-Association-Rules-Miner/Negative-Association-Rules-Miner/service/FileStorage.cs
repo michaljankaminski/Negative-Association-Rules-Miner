@@ -9,7 +9,7 @@ namespace Negative_Association_Rules_Miner.service
     public interface IFileStorage
     {
         IList<StorageFile> GetFiles();
-        bool AddNewFile(string path);
+        bool AddNewFile(string path, bool copy = true);
         bool RemoveFile(int key);
     }
     public class FileStorage:IFileStorage
@@ -36,13 +36,14 @@ namespace Negative_Association_Rules_Miner.service
             return StoredFiles;
         }
 
-        public bool AddNewFile(string path)
+        public bool AddNewFile(string path, bool copy = true)
         {
             try
             {
                 if (!File.Exists(path))
                     throw new FileNotFoundException();
-                File.Copy(path,Path.Combine(SetsPath,Path.GetFileName(path)));
+                if (copy)
+                    File.Copy(path,Path.Combine(SetsPath,Path.GetFileName(path)));
                 StoredFiles.Add(new StorageFile
                 {
                     Key = CurrentIndex,
@@ -51,12 +52,14 @@ namespace Negative_Association_Rules_Miner.service
                 CurrentIndex++;
                 return true;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
+                Logger.Log(ex.ToString());
                 return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Log(ex.ToString());
                 return false;
             }
         }
@@ -86,7 +89,7 @@ namespace Negative_Association_Rules_Miner.service
         {
             foreach (var file in Directory.GetFiles(SetsPath))
             {
-                AddNewFile(file);
+                AddNewFile(file,false);
             }
         }
     }

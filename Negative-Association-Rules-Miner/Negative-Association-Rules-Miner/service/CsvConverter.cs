@@ -1,30 +1,34 @@
-﻿using System;
+﻿using Negative_Association_Rules_Miner.model;
+using Negative_Association_Rules_Miner.model.mining;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using Negative_Association_Rules_Miner.model;
 
 namespace Negative_Association_Rules_Miner.service
 {
     interface ICsvConverter
     {
-        IList<DynamicRecord> Convert(IEnumerable<dynamic> records);
+        RecordsDataSet Convert(IEnumerable<dynamic> records);
     }
-    class CsvConverter:ICsvConverter
+    public class CsvConverter:ICsvConverter
     {
-        public IList<DynamicRecord> Convert(IEnumerable<dynamic> records)
+        public RecordsDataSet Convert(IEnumerable<dynamic> records)
         {
-            IList <DynamicRecord> convertedItems = new List<DynamicRecord>();
+            RecordHeaders headers = null;
+            var listedRecords = records.ToList();
 
-            foreach (var record in records.ToList())
+            if (listedRecords.Count > 0)
             {
-                convertedItems.Add(new DynamicRecord(record));
-                //foreach (var property in propertyValues.Keys)
-                //{
-                //    Console.WriteLine(string.Format("{0} : {1}", property, propertyValues[property]));
-                //}
+                IDictionary<string, object> firstItem = listedRecords[0];
+                headers = new RecordHeaders(new List<string>(firstItem.Keys.ToList()));
             }
+            
+            List<DynamicRecord> convertedItems = new List<DynamicRecord>();
 
-            return convertedItems;
+            foreach (var record in listedRecords)
+                convertedItems.Add(new DynamicRecord(record));
+                
+            return new RecordsDataSet(headers, convertedItems); ;
         }
     }
 }
