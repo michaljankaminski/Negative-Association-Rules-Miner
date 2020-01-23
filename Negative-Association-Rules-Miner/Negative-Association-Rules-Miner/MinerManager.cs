@@ -14,19 +14,20 @@ namespace Negative_Association_Rules_Miner
             _dataSourceRepository = new DataSourceRepository();
         }
 
-        public IEnumerable<string> ViewAvaliableSources()
+        public IEnumerable<string> ViewAvailableSources()
         {
             return _dataSourceRepository.ListSources();
         }
 
         public bool SelectSource(int option)
         {
-            throw new NotImplementedException();
+            _miner.LoadItemSet(_dataSourceRepository.Get(option));
+            return true;
         }
 
         public string FindRule(string item)
         {
-            throw new NotImplementedException();
+            _miner.FindNegativeRule()
         }
     }
 }

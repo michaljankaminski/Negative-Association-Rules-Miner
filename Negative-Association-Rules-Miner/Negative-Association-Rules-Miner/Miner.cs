@@ -2,12 +2,13 @@
 using Negative_Association_Rules_Miner.model;
 using Negative_Association_Rules_Miner.repository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Negative_Association_Rules_Miner
 {
     interface IMiner
     {
-        void LoadItemSet(string path);
+        void LoadItemSet(IList<DynamicRecord> records);
         bool FilterItemSet();
         IEnumerable<Rule> FindNegativeRule(Item item);
     }
@@ -16,7 +17,7 @@ namespace Negative_Association_Rules_Miner
         private readonly IDataSourceRepository _dataSourceRepository;
         private readonly IRuleFinder _ruleFinder;
 
-        private List<IDataSourceModel> _itemSet { get; }
+        private List<DynamicRecord> _itemSet { get; set; }
         
         public Miner()
         {
@@ -24,9 +25,9 @@ namespace Negative_Association_Rules_Miner
             _ruleFinder = new RuleFinder();
         }
 
-        public void LoadItemSet(string path)
+        public void LoadItemSet(IList<DynamicRecord> records)
         {
-
+            _itemSet = records.ToList();
         }
         /// <summary>
         /// Method used to filtering the whole itemset - removing 
