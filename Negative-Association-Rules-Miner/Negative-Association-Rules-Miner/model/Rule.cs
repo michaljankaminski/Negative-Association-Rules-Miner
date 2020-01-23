@@ -10,7 +10,7 @@ namespace Negative_Association_Rules_Miner.model
     {
         public int TransactionId { get; set; }
 
-        private List<IDataSourceModel> _itemList { get; set; }
+        private IList<IDataSourceModel> _itemList { get; set; }
 
         public IEnumerable<IDataSourceModel> ItemSet
         {

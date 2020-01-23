@@ -5,7 +5,13 @@ using System.Collections.Generic;
 
 namespace Negative_Association_Rules_Miner
 {
-    public class Miner
+    interface IMiner
+    {
+        void LoadItemSet(string path);
+        bool FilterItemSet();
+        IEnumerable<Rule> FindNegativeRule(Item item);
+    }
+    public class Miner : IMiner
     {
         private readonly IDataSourceRepository _dataSourceRepository;
         private readonly IRuleFinder _ruleFinder;

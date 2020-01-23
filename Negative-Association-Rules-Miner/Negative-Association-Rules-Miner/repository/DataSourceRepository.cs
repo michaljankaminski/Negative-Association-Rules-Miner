@@ -5,11 +5,11 @@ namespace Negative_Association_Rules_Miner.repository
 {
     interface IDataSourceRepository
     {
-        List<IDataSourceModel> Get(string path);
+        IList<IDataSourceModel> Get(string path);
     }
     class DataSourceRepository: IDataSourceRepository
     {
-        public List<IDataSourceModel> Get(string path)
+        public IList<IDataSourceModel> Get(string path)
         {
             throw new System.NotImplementedException();
         }

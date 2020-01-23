@@ -6,11 +6,11 @@ namespace Negative_Association_Rules_Miner
 {
     interface IRuleFinder
     {
-        IEnumerable<Rule> FindNegative(List<IDataSourceModel> dataSourceModels, Item itemToFind);
+        IEnumerable<Rule> FindNegative(IList<IDataSourceModel> dataSourceModels, Item itemToFind);
     }
     class RuleFinder : IRuleFinder
     {
-        public IEnumerable<Rule> FindNegative(List<IDataSourceModel> dataSourceModels, Item itemToFind)
+        public IEnumerable<Rule> FindNegative(IList<IDataSourceModel> dataSourceModels, Item itemToFind)
         {
             throw new NotImplementedException();
         }
