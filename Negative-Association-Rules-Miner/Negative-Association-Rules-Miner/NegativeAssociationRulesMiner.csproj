@@ -60,17 +60,19 @@
     <Compile Include="datasource\CsvFileSource.cs" />
     <Compile Include="Miner.cs" />
     <Compile Include="MinerManager.cs" />
-    <Compile Include="model\DynamicRecord.cs" />
-    <Compile Include="model\Item.cs" />
-    <Compile Include="model\Rule.cs" />
+    <Compile Include="model\mining\DynamicRecord.cs" />
+    <Compile Include="model\StorageFile.cs" />
+    <Compile Include="model\mining\Item.cs" />
+    <Compile Include="model\mining\Rule.cs" />
     <Compile Include="repository\DataSourceRepository.cs" />
     <Compile Include="RuleFinder.cs" />
     <Compile Include="service\CsvConverter.cs" />
     <Compile Include="service\CsvParser.cs" />
     <Compile Include="model\ExampleModel.cs" />
-    <Compile Include="model\IDataSourceModel.cs" />
+    <Compile Include="model\mining\IDataSourceModel.cs" />
     <Compile Include="model\SuperMarket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\FileStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
