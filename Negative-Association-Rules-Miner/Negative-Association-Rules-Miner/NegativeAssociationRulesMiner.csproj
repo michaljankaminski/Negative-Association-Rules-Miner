@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="datasource\CsvFileSource.cs" />
+    <Compile Include="datasource\CsvDataSource.cs" />
     <Compile Include="Miner.cs" />
     <Compile Include="MinerManager.cs" />
     <Compile Include="model\mining\DynamicRecord.cs" />
