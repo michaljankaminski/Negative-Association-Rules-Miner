@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="CsvParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\FileStorageTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

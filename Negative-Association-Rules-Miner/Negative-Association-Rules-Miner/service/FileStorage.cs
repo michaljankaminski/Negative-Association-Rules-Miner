@@ -6,16 +6,31 @@ using System.Linq;
 
 namespace Negative_Association_Rules_Miner.service
 {
-    interface IFileStorage
+    public interface IFileStorage
     {
         IList<StorageFile> GetFiles();
         bool AddNewFile(string path);
         bool RemoveFile(int key);
     }
-    class FileStorage:IFileStorage
+    public class FileStorage:IFileStorage
     {
+        private string AppDataPath { get; set; }
+        private string SetsPath { get; set; }
         private List<StorageFile> StoredFiles { get; set; } = new List<StorageFile>();
         private int CurrentIndex { get; set; } = 0;
+
+        public FileStorage()
+        {
+            AppDataPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "PoNowemu",
+                "RulesMiner");
+            Directory.CreateDirectory(AppDataPath);
+            SetsPath = Path.Combine(AppDataPath, "Sets");
+            Directory.CreateDirectory(SetsPath);
+            AddLocalFiles();
+        }
+
         public IList<StorageFile> GetFiles()
         {
             return StoredFiles;
@@ -63,6 +78,14 @@ namespace Negative_Association_Rules_Miner.service
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        private void AddLocalFiles()
+        {
+            foreach (var file in Directory.GetFiles(SetsPath))
+            {
+                AddNewFile(file);
             }
         }
     }
