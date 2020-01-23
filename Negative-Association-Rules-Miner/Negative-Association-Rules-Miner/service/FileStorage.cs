@@ -42,6 +42,7 @@ namespace Negative_Association_Rules_Miner.service
             {
                 if (!File.Exists(path))
                     throw new FileNotFoundException();
+                File.Copy(path,Path.Combine(SetsPath,Path.GetFileName(path)));
                 StoredFiles.Add(new StorageFile
                 {
                     Key = CurrentIndex,
