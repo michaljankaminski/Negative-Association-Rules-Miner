@@ -21,7 +21,8 @@ namespace ConsolePresentation
                 Console.WriteLine(item);
             }
 
-            manager.SelectSource(1);
+            manager.SelectSource(0);
+            manager.FindRule(String.Empty);
             Console.WriteLine("Finished");
             Console.ReadKey();
         }

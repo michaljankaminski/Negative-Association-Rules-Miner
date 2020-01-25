@@ -14,21 +14,22 @@ namespace Negative_Association_Rules_Miner.service
     {
         public RecordsDataSet Convert(IEnumerable<dynamic> records)
         {
-            RecordHeaders headers = null;
+            List<string> headers = null;
             var listedRecords = records.ToList();
 
             if (listedRecords.Count > 0)
             {
                 IDictionary<string, object> firstItem = listedRecords[0];
-                headers = new RecordHeaders(new List<string>(firstItem.Keys.ToList()));
+                headers = new List<string>(firstItem.Keys.ToList());
             }
             
             List<DynamicRecord> convertedItems = new List<DynamicRecord>();
-
+            
             foreach (var record in listedRecords)
                 convertedItems.Add(new DynamicRecord(record));
                 
-            return new RecordsDataSet(headers, convertedItems); ;
+
+            return new RecordsDataSet(headers, convertedItems);
         }
     }
 }

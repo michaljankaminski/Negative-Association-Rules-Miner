@@ -27,7 +27,9 @@ namespace Negative_Association_Rules_Miner
 
         public string FindRule(string item)
         {
-            throw new NotImplementedException();
+            _miner.Test();
+            return String.Empty;
+           // throw new NotImplementedException();
         }
     }
 }
