@@ -35,11 +35,11 @@ for (k=2; Fk-1!=Φ; k++)
       s= Support( i);
       for each A,B (A U B= i )
       {
-        if ( Supp(A -> ┐B) ≥ MS && Conviction(A->┐B)≤2.0)
-            addNAR <- { A ┐B)
+        if ( Supp(A -> ┐B) ≥ MS && Conviction(A -> ┐B) ≤ 2.0)
+            addNAR <- { A -> ┐B)
 
-        if ( Supp(┐A -> B) ≥ MS && Conviction(┐A -> B) ≤2.0) 
-            addNAR <- { ┐A  B}
+        if ( Supp(┐A -> B) ≥ MS && Conviction(┐A -> B) ≤ 2.0) 
+            addNAR <- { ┐A -> B}
        }
     }
 } 
