@@ -6,6 +6,12 @@ namespace Negative_Association_Rules_Miner.model.mining
     {
         public IList<string> Headers { get; set; }
         public IList<DynamicRecord> Records { get; set; }
+
+        public RecordsDataSet()
+        {
+
+        }
+
         public RecordsDataSet(List<string> headers, IList<DynamicRecord> records)
         {
             Headers = headers;
@@ -42,10 +48,18 @@ namespace Negative_Association_Rules_Miner.model.mining
             List<string> newHeaders = new List<string>(Headers);
             List<DynamicRecord> newRecords = new List<DynamicRecord>(Records);
 
-
-            for (int i = 0; i < itemsToInclude.Count; i++)
+            for (int i = 0; i < Headers.Count; i++)
             {
-                if (!Headers.Contains(itemsToInclude[i]))
+                bool found = false;
+                foreach (var item in itemsToInclude)
+                {
+                    if (item == Headers[i])
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
                     newHeadersIndexes.Add(i);
             }
 

@@ -8,8 +8,12 @@ namespace Negative_Association_Rules_Miner.model
     {
         //public IDictionary<string, object> Record { get; set; }
 
-       public IList<object> Content { get; set; }
-        
+        public IList<object> Content { get; set; }
+
+        public DynamicRecord()
+        {
+
+        }
 
         public DynamicRecord(IDictionary<string, object> record)
         {
