@@ -15,6 +15,5 @@ namespace Negative_Association_Rules_Miner.model
             return String.Compare(Name, item.Name);
         }
 
-     
     }
 }

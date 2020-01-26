@@ -63,7 +63,7 @@
     <Compile Include="MinerManager.cs" />
     <Compile Include="model\mining\RecordsDataSet.cs" />
     <Compile Include="model\mining\DynamicRecord.cs" />
-    <Compile Include="model\mining\Params.cs" />
+    <Compile Include="model\mining\RuleParameters.cs" />
     <Compile Include="model\StorageFile.cs" />
     <Compile Include="model\mining\Item.cs" />
     <Compile Include="model\mining\Rule.cs" />

@@ -14,6 +14,9 @@ namespace Negative_Association_Rules_Miner.model
         private IList<Item> _leftItemList { get; set; }
         private IList<Item> _rightItemList { get; set; }
 
+        public double Support { get; set; }
+        public double Confidence { get; set; }
+
         public IEnumerable<Item> LeftItemSet
         {
             get { return _leftItemList; }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Negative_Association_Rules_Miner.model;
+using Negative_Association_Rules_Miner.model.mining;
 using Negative_Association_Rules_Miner.repository;
 
 namespace Negative_Association_Rules_Miner
@@ -21,15 +23,50 @@ namespace Negative_Association_Rules_Miner
 
         public bool SelectSource(int option)
         {
-            _miner.LoadItemSet(_dataSourceRepository.Get(option));
-            return true;
+            try
+            {
+                _miner.LoadItemSet(_dataSourceRepository.Get(option));
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.Message);
+                return false;
+            }
         }
 
-        public string FindRule(string item)
+        public bool ExcludeItems(IList<string> itemsToExclude)
+        {
+            try
+            {
+                _miner.ExcludeItemsInDataSet(itemsToExclude);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.Message);
+                return false;
+            }
+        }
+
+        public bool IncludeItems(IList<string> itemsToInclude)
+        {
+            try
+            {
+                _miner.IncludeItemsInDataSet(itemsToInclude);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.Message);
+                return false;
+            }
+        }
+
+        public IEnumerable<Rule> FindRule(RuleParameters parameters)
         {
             _miner.Test();
-            return String.Empty;
-           // throw new NotImplementedException();
+            return _miner.FindNegativeRule(parameters);
         }
     }
 }

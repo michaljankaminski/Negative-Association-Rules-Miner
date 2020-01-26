@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Negative_Association_Rules_Miner;
+using Negative_Association_Rules_Miner.model.mining;
 
 namespace ConsolePresentation
 {
@@ -21,8 +22,14 @@ namespace ConsolePresentation
                 Console.WriteLine(item);
             }
 
+            int w = 2;
+            var parameters = new RuleParameters
+            {
+                MinConfidence = 0,
+                MinSupport = 0.4
+            };
             manager.SelectSource(0);
-            manager.FindRule(String.Empty);
+            manager.FindRule(parameters);
             Console.WriteLine("Finished");
             Console.ReadKey();
         }
