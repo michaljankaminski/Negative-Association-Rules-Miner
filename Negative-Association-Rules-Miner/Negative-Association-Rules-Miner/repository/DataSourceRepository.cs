@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using Negative_Association_Rules_Miner.datasource;
 using Negative_Association_Rules_Miner.model;
@@ -9,6 +10,7 @@ namespace Negative_Association_Rules_Miner.repository
 {
     interface IDataSourceRepository
     {
+        bool AddNewFile(string path);
         RecordsDataSet Get(int key);
         IList<DynamicRecord> GetCsvByUrl(string url);
         IList<DynamicRecord> GetCsvByPath(string path);
@@ -26,6 +28,11 @@ namespace Negative_Association_Rules_Miner.repository
         public IList<string> ListSources()
         {
             return _csvDataSource.GetAvailableSources();
+        }
+
+        public bool AddNewFile(string path)
+        {
+            return _csvDataSource.AddNewFile(path);
         }
 
         public RecordsDataSet Get(int key)

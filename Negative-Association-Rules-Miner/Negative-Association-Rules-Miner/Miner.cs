@@ -1,10 +1,9 @@
-﻿using System;
-using Negative_Association_Rules_Miner.model;
-using Negative_Association_Rules_Miner.repository;
+﻿using Negative_Association_Rules_Miner.model;
+using Negative_Association_Rules_Miner.model.mining;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Negative_Association_Rules_Miner.model.mining;
 using Rule = Negative_Association_Rules_Miner.model.Rule;
 
 namespace Negative_Association_Rules_Miner
@@ -12,6 +11,8 @@ namespace Negative_Association_Rules_Miner
     interface IMiner
     {
         void LoadItemSet(RecordsDataSet data);
+        bool IsLoaded();
+        IEnumerable<string> GetHeadersList();
         void Test();
         bool IncludeItemsInDataSet(IList<string> itemsToInclude);
         bool ExcludeItemsInDataSet(IList<string> itemsToExclude);
@@ -34,6 +35,27 @@ namespace Negative_Association_Rules_Miner
             DataSet = data;
             FilteredDataSet = data;
         }
+
+        public bool IsLoaded()
+        {
+            if (DataSet == null)
+                return false;
+            else
+            {
+                return true;
+            }
+        }
+
+        public IEnumerable<string> GetHeadersList()
+        {
+            if (IsLoaded())
+                return FilteredDataSet.Headers;
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Method used to filtering the whole itemset - removing 
         /// all records not connected with interesting item
@@ -94,7 +116,7 @@ namespace Negative_Association_Rules_Miner
 
             List<Item> initialFrequentItemset = new List<Item>();
 
-            var transactionsSet = GetTransactionSet(DataSet.Records);
+            var transactionsSet = GetTransactionSet(FilteredDataSet.Records);
 
             var headersList = DataSet.Headers;
 

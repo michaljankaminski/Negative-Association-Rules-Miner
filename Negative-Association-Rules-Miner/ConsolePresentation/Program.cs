@@ -14,8 +14,27 @@ namespace ConsolePresentation
         {
             //CsvParser handler = new CsvParser();
             //handler.Test();
+
+            //try
+            //{
+            //    MinerConsole mc = new MinerConsole();
+            //    mc.Start();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //    return;
+            //}
+            //finally
+            //{
+            //    Console.WriteLine("Application has finished working. Press any key to exit.");
+            //    Console.ReadKey();
+            //}
+
+
+            //return;
             MinerManager manager = new MinerManager();
-            List<string> items = new List<string>();
+            var items = new List<string>();
             items = manager.ViewAvailableSources().ToList();
             foreach (var item in items)
             {

@@ -21,6 +21,11 @@ namespace Negative_Association_Rules_Miner
             return _dataSourceRepository.ListSources();
         }
 
+        public bool AddNewSource(string path)
+        {
+            return _dataSourceRepository.AddNewFile(path);
+        }
+
         public bool SelectSource(int option)
         {
             try
@@ -33,6 +38,11 @@ namespace Negative_Association_Rules_Miner
                 Logger.Log(e.Message);
                 return false;
             }
+        }
+
+        public IEnumerable<string> GetListOfHeaders()
+        {
+            return _miner.GetHeadersList();
         }
 
         public bool ExcludeItems(IList<string> itemsToExclude)
@@ -65,7 +75,6 @@ namespace Negative_Association_Rules_Miner
 
         public IEnumerable<Rule> FindRule(RuleParameters parameters)
         {
-            _miner.Test();
             return _miner.FindNegativeRule(parameters);
         }
     }
