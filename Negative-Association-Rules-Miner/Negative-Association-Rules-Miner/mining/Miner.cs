@@ -274,7 +274,7 @@ namespace Negative_Association_Rules_Miner.mining
 
                                 double supportANotB = lhsSupport - unionSupport;
                                 double supportNotAB = rhsSupport - unionSupport;
-                                double supportNotANotB = 1 - lhsSupport - unionSupport;
+                                double supportNotANotB = 1 - lhsSupport - rhsSupport + unionSupport;
 
                                 double aNotBConfidence = supportANotB / lhsSupport;
                                 double notABConfidence = supportNotAB / (1 - lhsSupport);
