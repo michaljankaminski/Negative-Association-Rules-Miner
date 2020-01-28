@@ -45,7 +45,9 @@ namespace ConsolePresentation
             var parameters = new RuleParameters
             {
                 MinConfidence = 0,
-                MinSupport = 0.4
+                MinSupport = 0.05,
+                MaxLength = 4,
+                MinLength = 3
             };
             manager.SelectSource(0);
             manager.FindRule(parameters);
