@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using Negative_Association_Rules_Miner.model;
-using Negative_Association_Rules_Miner.model.mining;
+﻿using Negative_Association_Rules_Miner.model.mining;
 using Negative_Association_Rules_Miner.service;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Negative_Association_Rules_Miner.datasource
 {
     interface IDataSource
     {
         IList<string> GetAvailableSources();
+        bool AddNewFile(string path);
         RecordsDataSet GetPredefinedSet(int key);
         RecordsDataSet GetCustom(string url);
     }
@@ -42,6 +42,24 @@ namespace Negative_Association_Rules_Miner.datasource
             }
 
             return files;
+        }
+
+        public bool AddNewFile(string path)
+        {
+            try
+            {
+                var numberOfFiles = _fileStorage.GetNumberOfFiles();
+                _fileStorage.AddNewFile(path);
+                if (numberOfFiles == _fileStorage.GetNumberOfFiles())
+                    return false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.Message);
+                return false;
+            }
+
         }
 
         public RecordsDataSet GetPredefinedSet(int key)

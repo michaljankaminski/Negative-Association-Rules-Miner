@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Negative_Association_Rules_Miner.model
+namespace Negative_Association_Rules_Miner.model.mining
 {
     /// <summary>
     /// Basic model of single association rule 
     /// </summary>
     public class Rule
     {
-        public int TransactionId { get; set; }
-
         private IList<Item> _leftItemList { get; set; }
         private IList<Item> _rightItemList { get; set; }
+
+        public RuleType Type { get; set; }
+
+        public double Support { get; set; }
+        public double Confidence { get; set; }
 
         public IEnumerable<Item> LeftItemSet
         {

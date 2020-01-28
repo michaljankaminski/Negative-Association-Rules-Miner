@@ -1,8 +1,8 @@
-﻿using Negative_Association_Rules_Miner.model.mining;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Negative_Association_Rules_Miner.model;
 
 namespace Negative_Association_Rules_Miner.service
 {
@@ -11,6 +11,7 @@ namespace Negative_Association_Rules_Miner.service
         IList<StorageFile> GetFiles();
         bool AddNewFile(string path, bool copy = true);
         bool RemoveFile(int key);
+        int GetNumberOfFiles();
     }
     public class FileStorage:IFileStorage
     {
@@ -83,6 +84,11 @@ namespace Negative_Association_Rules_Miner.service
             {
                 return false;
             }
+        }
+
+        public int GetNumberOfFiles()
+        {
+            return CurrentIndex;
         }
 
         private void AddLocalFiles()

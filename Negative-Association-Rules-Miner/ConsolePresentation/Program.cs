@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using Negative_Association_Rules_Miner;
 
 namespace ConsolePresentation
 {
@@ -11,19 +6,44 @@ namespace ConsolePresentation
     {
         private static void Main()
         {
-            //CsvParser handler = new CsvParser();
-            //handler.Test();
-            MinerManager manager = new MinerManager();
-            List<string> items = new List<string>();
-            items = manager.ViewAvailableSources().ToList();
-            foreach (var item in items)
+            try
             {
-                Console.WriteLine(item);
+                MinerConsole mc = new MinerConsole();
+                mc.Start();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
+            finally
+            {
+                Console.WriteLine("Application has finished working. Press any key to exit.");
+                Console.ReadKey();
             }
 
-            manager.SelectSource(1);
-            Console.WriteLine("Finished");
-            Console.ReadKey();
+
+            return;
+            //MinerManager manager = new MinerManager();
+            //var items = manager.ViewAvailableSources().ToList();
+            //foreach (var item in items)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //var parameters = new RuleParameters
+            //{
+            //    MinConfidence = 0,
+            //    MinSupport = 0.05,
+            //    MaxLength = 4,
+            //    MinLength = 3
+            //};
+            //MinerConsole mc2 = new MinerConsole();
+            //manager.SelectSource(0);
+            //manager.GetObservableRulesCollection().CollectionChanged += mc2.MinerConsole_CollectionChanged;
+            //manager.FindRule(parameters);
+            //Console.WriteLine("Finished");
+            //Console.ReadKey();
         }
     }
 }
