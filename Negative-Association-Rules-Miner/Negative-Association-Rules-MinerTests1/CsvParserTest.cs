@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Negative_Association_Rules_Miner;
-using Negative_Association_Rules_Miner.model;
 using System;
 using System.Linq;
 

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Negative_Association_Rules_Miner.model.mining;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Negative_Association_Rules_Miner.model;
 
-namespace Negative_Association_Rules_Miner
+namespace Negative_Association_Rules_Miner.mining
 {
     interface IMinerHelper
     {

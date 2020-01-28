@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Negative_Association_Rules_Miner.model
+namespace Negative_Association_Rules_Miner.model.mining
 {
     public class DynamicRecord : IDataSourceModel
     {

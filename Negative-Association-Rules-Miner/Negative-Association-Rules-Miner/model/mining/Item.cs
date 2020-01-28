@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Negative_Association_Rules_Miner.model
+namespace Negative_Association_Rules_Miner.model.mining
 {
     /// <summary>
     /// Single item model 

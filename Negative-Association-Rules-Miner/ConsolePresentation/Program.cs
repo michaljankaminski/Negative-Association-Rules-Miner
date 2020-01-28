@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using Negative_Association_Rules_Miner;
+﻿using Negative_Association_Rules_Miner;
 using Negative_Association_Rules_Miner.model.mining;
+using System;
+using System.Linq;
 
 namespace ConsolePresentation
 {
