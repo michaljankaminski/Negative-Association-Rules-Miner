@@ -62,7 +62,7 @@
     <Compile Include="service\Logger.cs" />
     <Compile Include="mining\Miner.cs" />
     <Compile Include="mining\MinerHelper.cs" />
-    <Compile Include="out\MinerManager.cs" />
+    <Compile Include="output\MinerManager.cs" />
     <Compile Include="model\mining\RecordsDataSet.cs" />
     <Compile Include="model\mining\DynamicRecord.cs" />
     <Compile Include="model\mining\RuleParameters.cs" />
@@ -77,7 +77,6 @@
     <Compile Include="service\FileStorage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

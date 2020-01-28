@@ -20,7 +20,7 @@ namespace Negative_Association_Rules_Miner.mining
         public double CalculateSupport(IEnumerable<IEnumerable<string>> transactionsSet, List<string> items, int numberOfRecords)
         {
             var intersectionItems = transactionsSet.Where(t => t.Intersect(items).Count() == items.Count);
-            double support = (double)intersectionItems.Count() / numberOfRecords; //FilteredDataSet.Records.Count
+            double support = (double)intersectionItems.Count() / numberOfRecords;
 
             return support;
         }
@@ -40,7 +40,7 @@ namespace Negative_Association_Rules_Miner.mining
                 .Select(r => r.Content
                     .Select((c, index) => new { value = c, index = index })
                     .Where(c => c.value.Equals("1"))
-                    .Select(b => headers[b.index])); //FilteredDataSet.Headers[b.index]
+                    .Select(b => headers[b.index]));
         }
     }
 }

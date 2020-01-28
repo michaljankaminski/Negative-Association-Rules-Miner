@@ -1,5 +1,4 @@
-﻿using Negative_Association_Rules_Miner.model;
-using Negative_Association_Rules_Miner.model.mining;
+﻿using Negative_Association_Rules_Miner.model.mining;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -114,6 +113,7 @@ namespace Negative_Association_Rules_Miner.mining
         {
             int rulesCounter = 0;
             double minSupport = initialParameters.MinSupport;
+            double minConfidence = initialParameters.MinConfidence;
 
             List<Rule> rulesResult = new List<Rule>();
             List<Item> initialFrequentItemset = new List<Item>();
@@ -180,7 +180,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     RightItemSet = rhs,
                                 };
 
-                                if (supportANotB >= minSupport && convictionANotB <= 2.0)
+                                if (supportANotB >= minSupport && convictionANotB <= 2.0 && aNotBConfidence >= minConfidence)
                                 {
                                     candidateRule.Support = supportANotB;
                                     candidateRule.Type = RuleType.RightNegative;
@@ -191,10 +191,10 @@ namespace Negative_Association_Rules_Miner.mining
                                     rulesResult.Add(candidateRule);
                                     rulesCounter++;
                                 }
-                                else if (supportNotAB >= minSupport && convictionNotAB <= 2.0)
+                                else if (supportNotAB >= minSupport && convictionNotAB <= 2.0 && notABConfidence >= minConfidence)
                                 {
                                     candidateRule.Support = supportNotAB;
-                                    candidateRule.Type = RuleType.RightNegative;
+                                    candidateRule.Type = RuleType.LeftNegative;
                                     //Logger.Log(string.Format("~~ {0} => {1}",
                                     //    string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //    string.Join(" ,", rhs.Select(r => r.Name))));

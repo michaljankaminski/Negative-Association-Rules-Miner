@@ -1,10 +1,9 @@
-﻿using Negative_Association_Rules_Miner;
-using Negative_Association_Rules_Miner.model.mining;
+﻿using Negative_Association_Rules_Miner.model.mining;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using Negative_Association_Rules_Miner.model;
+using Negative_Association_Rules_Miner.output;
 
 namespace ConsolePresentation
 {
@@ -39,7 +38,6 @@ namespace ConsolePresentation
             {
                 Console.WriteLine("The chosen option is incorrect. Try again.");
                 Start();
-                return;
             }
             else
             {
@@ -60,8 +58,6 @@ namespace ConsolePresentation
                         break;
                     case 5:
                         MineRules();
-                        break;
-                    default:
                         break;
                 }
             }

@@ -5,7 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace Negative_Association_Rules_Miner
+namespace Negative_Association_Rules_Miner.service
 {
     public interface ICsvParser
     {

@@ -9,8 +9,6 @@ namespace Negative_Association_Rules_Miner.model.mining
     /// </summary>
     public class Rule
     {
-        public int TransactionId { get; set; }
-
         private IList<Item> _leftItemList { get; set; }
         private IList<Item> _rightItemList { get; set; }
 

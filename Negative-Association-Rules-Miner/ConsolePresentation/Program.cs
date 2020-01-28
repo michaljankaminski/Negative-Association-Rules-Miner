@@ -1,7 +1,4 @@
-﻿using Negative_Association_Rules_Miner;
-using Negative_Association_Rules_Miner.model.mining;
-using System;
-using System.Linq;
+﻿using System;
 
 namespace ConsolePresentation
 {
