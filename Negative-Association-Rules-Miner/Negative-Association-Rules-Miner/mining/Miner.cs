@@ -295,7 +295,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
-                                if (supportANotB >= minSupport && aNotBConfidence >= minConfidence)
+                                else if (supportANotB >= minSupport && aNotBConfidence >= minConfidence)
                                 {
                                     candidateRule.Support = supportANotB;
                                     candidateRule.Confidence = aNotBConfidence;
@@ -308,7 +308,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
-                                if (supportNotAB >= minSupport && notABConfidence >= minConfidence)
+                                else if (supportNotAB >= minSupport && notABConfidence >= minConfidence)
                                 {
                                     candidateRule.Support = supportNotAB;
                                     candidateRule.Confidence = aNotBConfidence;

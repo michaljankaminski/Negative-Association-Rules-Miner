@@ -6,7 +6,7 @@ using Negative_Association_Rules_Miner.model;
 using Negative_Association_Rules_Miner.model.mining;
 using Negative_Association_Rules_Miner.repository;
 
-namespace Negative_Association_Rules_Miner.out
+namespace Negative_Association_Rules_Miner.output
 {
     public class MinerManager
     {
