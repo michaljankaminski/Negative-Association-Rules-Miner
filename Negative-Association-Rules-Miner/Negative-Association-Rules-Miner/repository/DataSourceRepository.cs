@@ -8,8 +8,6 @@ namespace Negative_Association_Rules_Miner.repository
     {
         bool AddNewFile(string path);
         RecordsDataSet Get(int key);
-        IList<DynamicRecord> GetCsvByUrl(string url);
-        IList<DynamicRecord> GetCsvByPath(string path);
         IList<string> ListSources();
     }
     class DataSourceRepository: IDataSourceRepository
@@ -36,14 +34,5 @@ namespace Negative_Association_Rules_Miner.repository
             return _csvDataSource.GetPredefinedSet(key);
         }
 
-        public IList<DynamicRecord> GetCsvByUrl(string url)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IList<DynamicRecord> GetCsvByPath(string path)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

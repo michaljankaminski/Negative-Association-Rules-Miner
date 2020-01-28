@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using Negative_Association_Rules_Miner.model;
 
 namespace ConsolePresentation
 {
@@ -33,9 +34,8 @@ namespace ConsolePresentation
             Console.WriteLine("4. Filter attributes in dataset.");
             Console.WriteLine("5. Mine negative rules.");
             Console.WriteLine("Select one of available option.");
-            var key = Console.Read();
-            Console.WriteLine("");
-            if (key < 49 || key > 53)
+            int option = GetOption(Console.ReadLine());
+            if (option < 1 || option > 6)
             {
                 Console.WriteLine("The chosen option is incorrect. Try again.");
                 Start();
@@ -43,7 +43,6 @@ namespace ConsolePresentation
             }
             else
             {
-                int option = key - 48;
                 switch (option)
                 {
                     case 1:
@@ -117,15 +116,15 @@ namespace ConsolePresentation
                 Start();
                 return;
             }
-            var key = Console.Read();
+            int option = GetOption(Console.ReadLine());
             Console.WriteLine("");
-            if (key < 48 || key > numOfItems + 48)
+            if (option < 0 || option >= numOfItems)
             {
                 Console.WriteLine("The chosen option is incorrect. Try again.");
             }
             else
             {
-                int selectedSource = key - 48;
+                int selectedSource = option;
                 if (manager.SelectSource(selectedSource))
                 {
                     Console.WriteLine("Dataset was loaded successfully.");
@@ -148,19 +147,18 @@ namespace ConsolePresentation
             Console.WriteLine("0. Return to start");
             Console.WriteLine("1. Include items which we want to mine.");
             Console.WriteLine("2. Exclude items which we do not want to include.");
-            var key = Console.Read();
-            Console.WriteLine("");
-            if (key < 48 || key > 50)
+            int option = GetOption(Console.ReadLine());
+            if (option == 0)
             {
-                Console.WriteLine("The chosen option is incorrect. Try again.");
                 Start();
                 return;
             }
+            else if (option < 0 || option > 2)
+            {
+                Console.WriteLine("The chosen option is incorrect. Try again.");
+            }
             else
             {
-                throw new NotImplementedException();
-                //TODO: To implement filtering
-                int option = key - 48;
                 switch (option)
                 {
                     case 0:
@@ -178,8 +176,78 @@ namespace ConsolePresentation
 
         private void MineRules()
         {
-            manager.GetObservableRulesCollection().CollectionChanged += MinerConsole_CollectionChanged;
-            throw new NotImplementedException();
+            if (!sourceSelected)
+            {
+                Console.WriteLine("THe data source was not chosen.");
+                Start();
+                return;
+            }
+
+            try
+            {
+                Console.WriteLine("Please enter a minimal support (for example:0,4).");
+                var supp = GetNumber(Console.ReadLine());
+                if (supp < 0)
+                    throw new Exception("Wpisano nie poprawną wartość.");
+
+                Console.WriteLine("Please enter a minimal confidence (for example:0,2).");
+                var conf = GetNumber(Console.ReadLine());
+                if (conf < 0)
+                    throw new Exception("Wpisano nie poprawną wartość.");
+
+                Console.WriteLine("Please enter a minimal rule length (for example:2).");
+                var minlen = GetOption(Console.ReadLine());
+                if (minlen < 0)
+                    throw new Exception("Wpisano nie poprawną wartość.");
+
+                Console.WriteLine("Please enter a maximal rule length (for example:4).");
+                var maxlen = GetOption(Console.ReadLine());
+                if (maxlen < 0)
+                    throw new Exception("Wpisano nie poprawną wartość.");
+
+                RuleParameters param = new RuleParameters
+                {
+                    MinSupport = supp,
+                    MinConfidence = conf,
+                    MinLength = minlen,
+                    MaxLength = maxlen
+                };
+
+                Console.WriteLine("Which approach of mining do you want to use?(1 or 2)");
+                var opt = GetOption(Console.ReadLine());
+                if (opt < 1 || opt > 2)
+                    throw new Exception("Wpisano nie poprawną wartość.");
+
+                manager.GetObservableRulesCollection().CollectionChanged += MinerConsole_CollectionChanged;
+                Console.WriteLine("Mining is being processed...");
+                if (opt == 1)
+                {
+                    manager.FindRule(param);
+                }
+                else if (opt == 2)
+                {
+                    manager.FindRuleSecondApproach(param);
+                }
+
+                if (manager.GetObservableRulesCollection().Count == 0)
+                    Console.WriteLine("No results found");
+                else
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Mining has finished!");
+                    Console.WriteLine("");
+                }
+
+                Console.WriteLine("");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Start();
+            }
         }
 
         private void ListCurrentHeaders()
@@ -206,11 +274,46 @@ namespace ConsolePresentation
             {
                 rhs += rsingle.Name + ";";
             }
-            //Logger.Log(string.Format("{0} => ~~ {1}",
-            //    string.Join(" ,", lhsEl.Select(r => r.Name)),
-            //    string.Join(" ,", rhs.Select(r => r.Name))));
-            Console.WriteLine(string.Format("{0} => {1}",
-                lhs, rhs));
+
+            lhs = lhs.Substring(0, lhs.Length - 1);
+            rhs = rhs.Substring(0, rhs.Length - 1);
+            switch (lastFoundRule.Type)
+            {
+                case RuleType.BothNegative:
+                    lhs = "¬ " + lhs;
+                    rhs = "¬ " + rhs;
+                    break;
+                case RuleType.LeftNegative:
+                    lhs = "¬ " + lhs;
+                    break;
+                case RuleType.RightNegative:
+                    rhs = "¬ " + rhs;
+                    break;
+            }
+            
+            Console.WriteLine(string.Format("{0} => {1}   (Support = {2}, Confidence = {3})",
+                lhs, rhs, Math.Round(lastFoundRule.Support,2),Math.Round(lastFoundRule.Confidence,2)));
+        }
+
+        private int GetOption(string input)
+        {
+            input = input.Substring(0, 1);
+            if (int.TryParse(input, out int option))
+            {
+                return option;
+            }
+
+            return -1;
+        }
+
+        private double GetNumber(string input)
+        {
+            if (double.TryParse(input, out double result))
+            {
+                return result;
+            }
+
+            return -1d;
         }
     }
 }

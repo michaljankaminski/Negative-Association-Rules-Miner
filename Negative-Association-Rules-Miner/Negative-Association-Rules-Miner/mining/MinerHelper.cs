@@ -38,7 +38,7 @@ namespace Negative_Association_Rules_Miner.mining
         {
             return records
                 .Select(r => r.Content
-                    .Select((c, index) => new { value = c, index })
+                    .Select((c, index) => new { value = c, index = index })
                     .Where(c => c.value.Equals("1"))
                     .Select(b => headers[b.index])); //FilteredDataSet.Headers[b.index]
         }

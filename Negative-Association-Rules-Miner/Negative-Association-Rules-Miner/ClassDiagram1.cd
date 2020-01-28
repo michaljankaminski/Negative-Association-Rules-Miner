@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Negative_Association_Rules_Miner.datasource.CsvDataSource" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAIAIIAAAAABAAAAAAAAAAASAABAAAAA=</HashCode>
+      <FileName>datasource\CsvDataSource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.mining.Miner" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAABYIAAAAAAAQABAAAAAAACBAAkAAAAA=</HashCode>
+      <FileName>mining\Miner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.mining.MinerHelper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>mining\MinerHelper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.model.mining.DynamicRecord" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\mining\DynamicRecord.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.model.mining.Item" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\mining\Item.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.model.mining.RecordsDataSet" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAEAAAAAAAAAAAAAAAAAAACAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\mining\RecordsDataSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.model.mining.Rule" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACABAAAAAAAAAAAAICAAAAAAAIAAAAgAAQCAAACAAAA=</HashCode>
+      <FileName>model\mining\Rule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.model.mining.RuleParameters" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAACAA=</HashCode>
+      <FileName>model\mining\RuleParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.model.mining.StorageFile" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\StorageFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.MinerManager" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAABAAEIAQAAAgAIAAgAAAACQAAAAAAAAAAACA=</HashCode>
+      <FileName>out\MinerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.CsvParser" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>service\CsvParser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.Logger" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>service\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.repository.DataSourceRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAABAAIAAAAAAAAAAIAAAAAQAIAAAAAA=</HashCode>
+      <FileName>repository\DataSourceRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.service.CsvConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>service\CsvConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Negative_Association_Rules_Miner.service.FileStorage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAgAAAKgAAAAAAAAAAAAAQAAAgCAAI=</HashCode>
+      <FileName>service\FileStorage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Negative_Association_Rules_Miner.datasource.IDataSource" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAASAABAAAAA=</HashCode>
+      <FileName>datasource\CsvDataSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Negative_Association_Rules_Miner.mining.IMiner" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAABIIAAAAAAAAABAAAAAAAABAAEAAAAA=</HashCode>
+      <FileName>mining\Miner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Negative_Association_Rules_Miner.mining.IMinerHelper" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>mining\MinerHelper.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Negative_Association_Rules_Miner.model.mining.IDataSourceModel" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\mining\IDataSourceModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Negative_Association_Rules_Miner.ICsvParser" Collapsed="true">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>service\CsvParser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Negative_Association_Rules_Miner.repository.IDataSourceRepository" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAABAAIAAAAAAAAAAAAAAAAQAIAAAAAA=</HashCode>
+      <FileName>repository\DataSourceRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Negative_Association_Rules_Miner.service.ICsvConverter" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>service\CsvConverter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Negative_Association_Rules_Miner.service.IFileStorage" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAQAAAgAAAA=</HashCode>
+      <FileName>service\FileStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Negative_Association_Rules_Miner.model.RuleType" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAABAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\mining\RuleType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

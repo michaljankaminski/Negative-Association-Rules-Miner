@@ -83,6 +83,11 @@ namespace Negative_Association_Rules_Miner
             return _miner.FindNegativeRuleFirstApproach(parameters);
         }
 
+        public IEnumerable<Rule> FindRuleSecondApproach(RuleParameters parameters)
+        {
+            return _miner.FindNegativeRuleSecondApproach(parameters);
+        }
+
         public ObservableCollection<Rule> GetObservableRulesCollection()
         {
             return this.setOfFoundRules;

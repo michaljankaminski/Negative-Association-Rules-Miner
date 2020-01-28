@@ -291,22 +291,26 @@ namespace Negative_Association_Rules_Miner.mining
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
                                     //   Math.Round(notANotBConfidence, 2)
                                     //   ));
+                                    setOfFoundRules.Add(candidateRule);
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
-                                if (aNotBConfidence >= minConfidence)
+                                if (supportANotB >= minSupport && aNotBConfidence >= minConfidence)
                                 {
+                                    candidateRule.Support = supportANotB;
                                     candidateRule.Confidence = aNotBConfidence;
                                     candidateRule.Type = RuleType.RightNegative;
                                     //Logger.Log(string.Format("{0} => ¬ {1} [{2}]",
                                     //   string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
                                     //   Math.Round(aNotBConfidence, 2)));
+                                    setOfFoundRules.Add(candidateRule);
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
-                                if (notABConfidence >= minConfidence)
+                                if (supportNotAB >= minSupport && notABConfidence >= minConfidence)
                                 {
+                                    candidateRule.Support = supportNotAB;
                                     candidateRule.Confidence = aNotBConfidence;
                                     candidateRule.Type = RuleType.LeftNegative;
                                     //Logger.Log(string.Format("¬ {0} => {1} [{2}]",
@@ -314,6 +318,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
                                     //   Math.Round(notABConfidence, 2)
                                     //   ));
+                                    setOfFoundRules.Add(candidateRule);
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
