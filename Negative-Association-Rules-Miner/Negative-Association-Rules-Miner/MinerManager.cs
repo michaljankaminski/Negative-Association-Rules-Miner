@@ -75,7 +75,7 @@ namespace Negative_Association_Rules_Miner
 
         public IEnumerable<Rule> FindRule(RuleParameters parameters)
         {
-            return _miner.FindNegativeRule(parameters);
+            return _miner.FindNegativeRuleFirstApproach(parameters);
         }
     }
 }
