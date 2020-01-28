@@ -160,14 +160,28 @@ namespace ConsolePresentation
                     case 0:
                         break;
                     case 1:
-                        AddNewSource();
+                        IncludeItems();
                         break;
                     case 2:
-                        SelectSource();
+                        ExcludeItems();
                         break;
                 }
             }
             Start();
+        }
+
+        private void IncludeItems()
+        {
+            Console.WriteLine("Write what columns do you want to include (example: coffee;tea)");
+            var items = Console.ReadLine();
+            manager.IncludeItems(items.Split(';'));
+        }
+
+        private void ExcludeItems()
+        {
+            Console.WriteLine("Write what columns do you want to exclude (example: coffee;tea)");
+            var items = Console.ReadLine();
+            manager.ExcludeItems(items.Split(';'));
         }
 
         private void MineRules()

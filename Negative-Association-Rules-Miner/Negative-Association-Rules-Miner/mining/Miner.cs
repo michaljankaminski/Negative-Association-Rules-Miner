@@ -23,12 +23,12 @@ namespace Negative_Association_Rules_Miner.mining
 
         private RecordsDataSet DataSet { get; set; } = null;
         private RecordsDataSet FilteredDataSet { get; set; }
-        private ObservableCollection<Rule> setOfFoundRules;
+        private readonly ObservableCollection<Rule> _setOfFoundRules;
 
         public Miner(ObservableCollection<Rule> foundRules)
         {
             _minerHelper = new MinerHelper();
-            setOfFoundRules = foundRules;
+            _setOfFoundRules = foundRules;
         }
 
         public void LoadItemSet(RecordsDataSet data)
@@ -187,7 +187,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     //Logger.Log(string.Format("{0} => ~~ {1}",
                                     //    string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //    string.Join(" ,", rhs.Select(r => r.Name))));
-                                    setOfFoundRules.Add(candidateRule);
+                                    _setOfFoundRules.Add(candidateRule);
                                     rulesResult.Add(candidateRule);
                                     rulesCounter++;
                                 }
@@ -198,7 +198,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     //Logger.Log(string.Format("~~ {0} => {1}",
                                     //    string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //    string.Join(" ,", rhs.Select(r => r.Name))));
-                                    setOfFoundRules.Add(candidateRule);
+                                    _setOfFoundRules.Add(candidateRule);
                                     rulesResult.Add(candidateRule);
                                     rulesCounter++;
                                 }
@@ -291,7 +291,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
                                     //   Math.Round(notANotBConfidence, 2)
                                     //   ));
-                                    setOfFoundRules.Add(candidateRule);
+                                    _setOfFoundRules.Add(candidateRule);
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
@@ -304,7 +304,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     //   string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
                                     //   Math.Round(aNotBConfidence, 2)));
-                                    setOfFoundRules.Add(candidateRule);
+                                    _setOfFoundRules.Add(candidateRule);
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
@@ -318,7 +318,7 @@ namespace Negative_Association_Rules_Miner.mining
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
                                     //   Math.Round(notABConfidence, 2)
                                     //   ));
-                                    setOfFoundRules.Add(candidateRule);
+                                    _setOfFoundRules.Add(candidateRule);
                                     rulesCounter++;
                                     rulesResult.Add(candidateRule);
                                 }
