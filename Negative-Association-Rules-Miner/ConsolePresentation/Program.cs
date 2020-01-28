@@ -34,14 +34,12 @@ namespace ConsolePresentation
 
             //return;
             MinerManager manager = new MinerManager();
-            var items = new List<string>();
-            items = manager.ViewAvailableSources().ToList();
+            var items = manager.ViewAvailableSources().ToList();
             foreach (var item in items)
             {
                 Console.WriteLine(item);
             }
 
-            int w = 2;
             var parameters = new RuleParameters
             {
                 MinConfidence = 0,
@@ -49,7 +47,9 @@ namespace ConsolePresentation
                 MaxLength = 4,
                 MinLength = 3
             };
+            MinerConsole mc = new MinerConsole();
             manager.SelectSource(0);
+            manager.GetObservableRulesCollection().CollectionChanged += mc.MinerConsole_CollectionChanged;
             manager.FindRule(parameters);
             Console.WriteLine("Finished");
             Console.ReadKey();

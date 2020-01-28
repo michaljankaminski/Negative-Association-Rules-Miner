@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Negative_Association_Rules_Miner;
+using Negative_Association_Rules_Miner.model;
 
 namespace ConsolePresentation
 {
@@ -17,6 +19,12 @@ namespace ConsolePresentation
         {
             manager = new MinerManager();
             Console.WriteLine("Negative association rules miner.");
+        }
+
+        public void MinerConsole_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            var collection = (sender as ObservableCollection<Rule>);
+            ShowLastFoundRule(collection.Last());
         }
 
         public void Start()
@@ -67,8 +75,7 @@ namespace ConsolePresentation
         {
             Console.WriteLine("");
             Console.WriteLine("Available sources:");
-            var items = new List<string>();
-            items = manager.ViewAvailableSources().ToList();
+            var items = manager.ViewAvailableSources().ToList();
             if (items.Count == 0)
             {
                 Console.WriteLine("There are no available files.");
@@ -126,6 +133,7 @@ namespace ConsolePresentation
                 if (manager.SelectSource(selectedSource))
                 {
                     Console.WriteLine("Dataset was loaded successfully.");
+                    sourceSelected = true;
                     ListCurrentHeaders();
                 }
                 else
@@ -174,6 +182,7 @@ namespace ConsolePresentation
 
         private void MineRules()
         {
+            manager.GetObservableRulesCollection().CollectionChanged += MinerConsole_CollectionChanged;
             throw new NotImplementedException();
         }
 
@@ -187,6 +196,25 @@ namespace ConsolePresentation
                 output += item + ";";
             }
             Console.WriteLine(output);
+        }
+
+        public void ShowLastFoundRule(Rule lastFoundRule)
+        {
+            string lhs = string.Empty;
+            string rhs = string.Empty;
+            foreach (var lsingle in lastFoundRule.LeftItemSet)
+            {
+                lhs += lsingle.Name + ";";
+            }
+            foreach (var rsingle in lastFoundRule.RightItemSet)
+            {
+                rhs += rsingle.Name + ";";
+            }
+            //Logger.Log(string.Format("{0} => ~~ {1}",
+            //    string.Join(" ,", lhsEl.Select(r => r.Name)),
+            //    string.Join(" ,", rhs.Select(r => r.Name))));
+            Console.WriteLine(string.Format("{0} => {1}",
+                lhs, rhs));
         }
     }
 }

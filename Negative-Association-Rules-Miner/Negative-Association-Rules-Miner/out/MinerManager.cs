@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Negative_Association_Rules_Miner.mining;
 using Negative_Association_Rules_Miner.model;
 using Negative_Association_Rules_Miner.model.mining;
 using Negative_Association_Rules_Miner.repository;
@@ -10,10 +12,13 @@ namespace Negative_Association_Rules_Miner
     {
         private readonly IMiner _miner;
         private readonly IDataSourceRepository _dataSourceRepository;
+        private ObservableCollection<Rule> setOfFoundRules;
         public MinerManager()
         {
-            _miner = new Miner();
+            setOfFoundRules = new ObservableCollection<Rule>();
+            _miner = new Miner(setOfFoundRules);
             _dataSourceRepository = new DataSourceRepository();
+
         }
 
         public IEnumerable<string> ViewAvailableSources()
@@ -76,6 +81,11 @@ namespace Negative_Association_Rules_Miner
         public IEnumerable<Rule> FindRule(RuleParameters parameters)
         {
             return _miner.FindNegativeRuleFirstApproach(parameters);
+        }
+
+        public ObservableCollection<Rule> GetObservableRulesCollection()
+        {
+            return this.setOfFoundRules;
         }
     }
 }

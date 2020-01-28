@@ -1,7 +1,5 @@
-﻿using Negative_Association_Rules_Miner.model;
-using Negative_Association_Rules_Miner.model.mining;
+﻿using Negative_Association_Rules_Miner.model.mining;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 
 namespace Negative_Association_Rules_Miner.service

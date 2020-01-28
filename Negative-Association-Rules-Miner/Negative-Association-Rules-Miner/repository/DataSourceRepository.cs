@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using Negative_Association_Rules_Miner.datasource;
-using Negative_Association_Rules_Miner.model;
+﻿using Negative_Association_Rules_Miner.datasource;
 using Negative_Association_Rules_Miner.model.mining;
+using System.Collections.Generic;
 
 namespace Negative_Association_Rules_Miner.repository
 {

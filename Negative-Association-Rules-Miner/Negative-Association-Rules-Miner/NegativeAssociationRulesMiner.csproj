@@ -58,9 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="datasource\CsvDataSource.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="Miner.cs" />
-    <Compile Include="MinerManager.cs" />
+    <Compile Include="model\mining\RuleType.cs" />
+    <Compile Include="service\Logger.cs" />
+    <Compile Include="mining\Miner.cs" />
+    <Compile Include="mining\MinerHelper.cs" />
+    <Compile Include="out\MinerManager.cs" />
     <Compile Include="model\mining\RecordsDataSet.cs" />
     <Compile Include="model\mining\DynamicRecord.cs" />
     <Compile Include="model\mining\RuleParameters.cs" />
@@ -68,7 +70,6 @@
     <Compile Include="model\mining\Item.cs" />
     <Compile Include="model\mining\Rule.cs" />
     <Compile Include="repository\DataSourceRepository.cs" />
-    <Compile Include="RuleFinder.cs" />
     <Compile Include="service\CsvConverter.cs" />
     <Compile Include="service\CsvParser.cs" />
     <Compile Include="model\mining\IDataSourceModel.cs" />

@@ -2,11 +2,10 @@
 using Negative_Association_Rules_Miner.model.mining;
 using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Collections.ObjectModel;
 using System.Linq;
-using Rule = Negative_Association_Rules_Miner.model.Rule;
 
-namespace Negative_Association_Rules_Miner
+namespace Negative_Association_Rules_Miner.mining
 {
     interface IMiner
     {
@@ -21,14 +20,16 @@ namespace Negative_Association_Rules_Miner
     }
     public class Miner : IMiner
     {
-        private readonly IRuleFinder _ruleFinder;
+        private readonly IMinerHelper _minerHelper;
 
         private RecordsDataSet DataSet { get; set; } = null;
         private RecordsDataSet FilteredDataSet { get; set; }
+        private ObservableCollection<Rule> setOfFoundRules;
 
-        public Miner()
+        public Miner(ObservableCollection<Rule> foundRules)
         {
-            _ruleFinder = new RuleFinder();
+            _minerHelper = new MinerHelper();
+            setOfFoundRules = foundRules;
         }
 
         public void LoadItemSet(RecordsDataSet data)
@@ -117,12 +118,12 @@ namespace Negative_Association_Rules_Miner
             List<Rule> rulesResult = new List<Rule>();
             List<Item> initialFrequentItemset = new List<Item>();
 
-            var transactionsSet = GetTransactionSet(FilteredDataSet.Records);
+            var transactionsSet = _minerHelper.GetTransactionSet(FilteredDataSet.Records, FilteredDataSet.Headers);
 
             var headersList = FilteredDataSet.Headers;
 
             foreach (var header in headersList)
-                if (CalculateSupport(transactionsSet, new List<string> { header }) >= minSupport)
+                if (_minerHelper.CalculateSupport(transactionsSet, new List<string> { header }, FilteredDataSet.Records.Count) >= minSupport)
                     initialFrequentItemset.Add(
                             new Item { Name = header }
                        );
@@ -135,17 +136,17 @@ namespace Negative_Association_Rules_Miner
 
                 // next we need to join them with theirselves to create 
                 // possible combinations 
-                var kFrequentCandidates = GetCombinations(initialFrequentItemset, (k-1)*2).ToList();
+                var kFrequentCandidates = _minerHelper.GetCombinations(initialFrequentItemset, (k-1)*2).ToList();
                 var kFrequentItemset = new List<List<Item>>();
                 foreach (var subSet in kFrequentCandidates)
                 {
 
-                    if (CalculateSupport(transactionsSet, subSet.Select(s => s.Name).ToList()) >= minSupport)
+                    if (_minerHelper.CalculateSupport(transactionsSet, subSet.Select(s => s.Name).ToList(), FilteredDataSet.Records.Count) >= minSupport)
                     {
                         for (int i = 1; i < subSet.Count(); i++)
                         {
                             // we get all possible combinations 
-                            var lhs = GetCombinations(subSet, i);
+                            var lhs = _minerHelper.GetCombinations(subSet, i);
                             foreach (var lhsEl in lhs)
                             {
                                 var rhs = subSet.Where(s => !lhsEl.Contains(s));
@@ -153,16 +154,16 @@ namespace Negative_Association_Rules_Miner
                                 // conditions such as : correlation coeff; support and confidence
                                 // base on the results, we can easily classify single rule as a positive either negative
                                 // We also use a 'conviction' parameter
-                                double unionSupport = CalculateSupport(transactionsSet, lhsEl
+                                double unionSupport = _minerHelper.CalculateSupport(transactionsSet, lhsEl
                                     .Union(rhs)
                                     .Select(l => l.Name)
-                                    .ToList());
-                                double lhsSupport = CalculateSupport(transactionsSet, lhsEl
+                                    .ToList(), FilteredDataSet.Records.Count);
+                                double lhsSupport = _minerHelper.CalculateSupport(transactionsSet, lhsEl
                                     .Select(l => l.Name)
-                                    .ToList());
-                                double rhsSupport = CalculateSupport(transactionsSet, rhs
+                                    .ToList(), FilteredDataSet.Records.Count);
+                                double rhsSupport = _minerHelper.CalculateSupport(transactionsSet, rhs
                                     .Select(l => l.Name)
-                                    .ToList());
+                                    .ToList(), FilteredDataSet.Records.Count);
 
                                 double supportANotB = lhsSupport - unionSupport;
                                 double supportNotAB = rhsSupport - unionSupport;
@@ -182,19 +183,22 @@ namespace Negative_Association_Rules_Miner
                                 if (supportANotB >= minSupport && convictionANotB <= 2.0)
                                 {
                                     candidateRule.Support = supportANotB;
-
+                                    candidateRule.Type = RuleType.RightNegative;
                                     //Logger.Log(string.Format("{0} => ~~ {1}",
                                     //    string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //    string.Join(" ,", rhs.Select(r => r.Name))));
+                                    setOfFoundRules.Add(candidateRule);
                                     rulesResult.Add(candidateRule);
                                     rulesCounter++;
                                 }
                                 else if (supportNotAB >= minSupport && convictionNotAB <= 2.0)
                                 {
                                     candidateRule.Support = supportNotAB;
+                                    candidateRule.Type = RuleType.RightNegative;
                                     //Logger.Log(string.Format("~~ {0} => {1}",
                                     //    string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //    string.Join(" ,", rhs.Select(r => r.Name))));
+                                    setOfFoundRules.Add(candidateRule);
                                     rulesResult.Add(candidateRule);
                                     rulesCounter++;
                                 }
@@ -206,7 +210,6 @@ namespace Negative_Association_Rules_Miner
                 }
 
             }
-
             return rulesResult;
         }
         public IEnumerable<Rule> FindNegativeRuleSecondApproach(RuleParameters initialParameters)
@@ -217,11 +220,11 @@ namespace Negative_Association_Rules_Miner
             List<Rule> rulesResult = new List<Rule>();
             List<Item> initialFrequentItemset = new List<Item>();
 
-            var transactionsSet = GetTransactionSet(FilteredDataSet.Records);
+            var transactionsSet = _minerHelper.GetTransactionSet(FilteredDataSet.Records, FilteredDataSet.Headers);
             var headersList = FilteredDataSet.Headers;
 
             foreach (var header in headersList)
-                if (CalculateSupport(transactionsSet, new List<string> { header }) >= minSupport)
+                if (_minerHelper.CalculateSupport(transactionsSet, new List<string> { header }, FilteredDataSet.Records.Count) >= minSupport)
                     initialFrequentItemset.Add(
                             new Item { Name = header }
                        );
@@ -236,16 +239,16 @@ namespace Negative_Association_Rules_Miner
 
                 // next we need to join them with theirselves to create 
                 // possible combinations 
-                var kFrequentCandidates = GetCombinations(initialFrequentItemset, k).ToList();
+                var kFrequentCandidates = _minerHelper.GetCombinations(initialFrequentItemset, k).ToList();
                 var kFrequentItemset = new List<List<Item>>();
                 foreach (var subSet in kFrequentCandidates)
                 {
-                    if (CalculateSupport(transactionsSet, subSet.Select(s => s.Name).ToList()) >= minSupport)
+                    if (_minerHelper.CalculateSupport(transactionsSet, subSet.Select(s => s.Name).ToList(), FilteredDataSet.Records.Count) >= minSupport)
                     {
                         for (int i = 1; i < subSet.Count(); i++)
                         {
                             // we get all possible combinations 
-                            var lhs = GetCombinations(subSet, i);
+                            var lhs = _minerHelper.GetCombinations(subSet, i);
                             foreach (var lhsEl in lhs)
                             {
                                 var rhs = subSet.Where(s => !lhsEl.Contains(s));
@@ -258,16 +261,16 @@ namespace Negative_Association_Rules_Miner
                                 // conditions such as : correlation coeff; support and confidence
                                 // base on the results, we can easily classify single rule as a positive either negative
                                 // We also use a 'conviction' parameter
-                                double unionSupport = CalculateSupport(transactionsSet, lhsEl
+                                double unionSupport = _minerHelper.CalculateSupport(transactionsSet, lhsEl
                                     .Union(rhs)
                                     .Select(l => l.Name)
-                                    .ToList());
-                                double lhsSupport = CalculateSupport(transactionsSet, lhsEl
+                                    .ToList(), FilteredDataSet.Records.Count);
+                                double lhsSupport = _minerHelper.CalculateSupport(transactionsSet, lhsEl
                                     .Select(l => l.Name)
-                                    .ToList());
-                                double rhsSupport = CalculateSupport(transactionsSet, rhs
+                                    .ToList(), FilteredDataSet.Records.Count);
+                                double rhsSupport = _minerHelper.CalculateSupport(transactionsSet, rhs
                                     .Select(l => l.Name)
-                                    .ToList());
+                                    .ToList(), FilteredDataSet.Records.Count);
 
                                 double supportANotB = lhsSupport - unionSupport;
                                 double supportNotAB = rhsSupport - unionSupport;
@@ -282,6 +285,7 @@ namespace Negative_Association_Rules_Miner
                                 {
                                     candidateRule.Support = supportNotANotB;
                                     candidateRule.Confidence = notANotBConfidence;
+                                    candidateRule.Type = RuleType.BothNegative;
                                     //Logger.Log(string.Format("¬ {0} => ¬ {1} [{2}]",
                                     //   string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
@@ -293,6 +297,7 @@ namespace Negative_Association_Rules_Miner
                                 if (aNotBConfidence >= minConfidence)
                                 {
                                     candidateRule.Confidence = aNotBConfidence;
+                                    candidateRule.Type = RuleType.RightNegative;
                                     //Logger.Log(string.Format("{0} => ¬ {1} [{2}]",
                                     //   string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
@@ -303,6 +308,7 @@ namespace Negative_Association_Rules_Miner
                                 if (notABConfidence >= minConfidence)
                                 {
                                     candidateRule.Confidence = aNotBConfidence;
+                                    candidateRule.Type = RuleType.LeftNegative;
                                     //Logger.Log(string.Format("¬ {0} => {1} [{2}]",
                                     //   string.Join(" ,", lhsEl.Select(r => r.Name)),
                                     //   string.Join(" ,", rhs.Select(r => r.Name)),
@@ -319,30 +325,6 @@ namespace Negative_Association_Rules_Miner
             }
             return rulesResult;
         }
-        public double CalculateSupport(IEnumerable<IEnumerable<string>> transactionsSet, List<string> items)
-        {
-            var intersectionItems = transactionsSet.Where(t => t.Intersect(items).Count() == items.Count);
-            double support = (double)intersectionItems.Count() / FilteredDataSet.Records.Count;
 
-            return support;
-        }
-
-        private IEnumerable<IEnumerable<T>> GetCombinations<T>(IEnumerable<T> list, int length)
-            where T : IComparable
-        {
-            if (length == 1) return list.Select(t => new T[] { t });
-            return GetCombinations(list, length - 1)
-                .SelectMany(t => list.Where(o => o.CompareTo(t.Last()) > 0),
-                    (t1, t2) => t1.Concat(new T[] { t2 }));
-        }
-
-        private IEnumerable<IEnumerable<string>> GetTransactionSet(IList<DynamicRecord> records)
-        {
-            return records
-                .Select(r => r.Content
-                    .Select((c, index) => new { value = c, index = index })
-                    .Where(c => c.value.Equals("1"))
-                    .Select(b => FilteredDataSet.Headers[b.index]));
-        }
     }
 }

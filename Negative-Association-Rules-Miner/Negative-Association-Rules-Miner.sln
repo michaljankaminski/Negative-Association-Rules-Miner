@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegativeAssociationRulesMin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolePresentation", "ConsolePresentation\ConsolePresentation.csproj", "{5006BC69-66F4-4467-AC15-A133AB39F9EB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32C4D05A-9477-4181-A19E-67521A02EB72}"
-	ProjectSection(SolutionItems) = preProject
-		DataSources\example.csv = DataSources\example.csv
-		DataSources\supermarket.csv = DataSources\supermarket.csv
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegativeAssociationRulesMinerTests", "Negative-Association-Rules-MinerTests1\NegativeAssociationRulesMinerTests.csproj", "{1C6F8955-A014-42CF-A28C-94EABE75598A}"
 EndProject
 Global
